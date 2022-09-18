@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./Header.module.css";
 
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../store/cart-context";
 
 const Header = (props) => {
+  const cartCtx = useContext(CartContext);
+
+  const cartItemNumber = cartCtx.items.reduce((currentVal, item) => {
+    return currentVal + item.amount;
+  }, 0);
+
   return (
     <div className={styles.header}>
       <Link to="/">
@@ -38,7 +45,7 @@ const Header = (props) => {
             <span
               className={`${styles.header__optionLineTwo} ${styles.header__cartItemCount}`}
             >
-              0
+              {cartItemNumber}
             </span>
           </div>
         </Link>

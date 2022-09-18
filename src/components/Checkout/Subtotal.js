@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./Subtotal.module.css";
 
 import CurrencyFormat from "react-currency-format";
+import { CartContext } from "../../store/cart-context";
 
 const Subtotal = (props) => {
+  const cartCtx = useContext(CartContext);
+
   return (
     <div className={styles.subtotal}>
       <CurrencyFormat
@@ -19,7 +22,7 @@ const Subtotal = (props) => {
           </>
         )}
         decimalScale={2}
-        value={12}
+        value={cartCtx.totalAmount}
         displayType={"text"}
         thousandSeparator={true}
         prefix={"$"}

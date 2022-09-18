@@ -15,7 +15,7 @@ const Checkout = (props) => {
         </div>
       </div>
       <div>
-        <Subtotal />
+        <Subtotal/>
       </div>
     </div>
   );

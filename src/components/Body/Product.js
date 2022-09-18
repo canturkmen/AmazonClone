@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./Product.module.css";
 
 import StarIcon from "@mui/icons-material/Star";
+import { CartContext } from "../../store/cart-context";
 
 const Product = (props) => {
+  const cartCtx = useContext(CartContext);
+  
+  const addToCartHandler = () => {
+    const item = {
+      id: props.id,
+      title: props.title,
+      price: props.price,
+      rating: props.rating,
+      imageUrl: props.imageUrl,
+    };
+
+    cartCtx.addItem(item);
+  };
+
   return (
     <div className={styles.product}>
       <div className={styles.product__info}>
@@ -23,7 +38,7 @@ const Product = (props) => {
         src={props.imageUrl}
         alt="Apple Watch"
       ></img>
-      <button class={styles.btn}>Add to Basket</button>
+      <button class={styles.btn} onClick={addToCartHandler}>Add to Basket</button>
     </div>
   );
 };
