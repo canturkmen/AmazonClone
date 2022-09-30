@@ -7,13 +7,17 @@ import { CartContext } from "../../store/cart-context";
 const Subtotal = (props) => {
   const cartCtx = useContext(CartContext);
 
+  const cartItemNumber = cartCtx.items.reduce((currentVal, item) => {
+    return currentVal + item.amount;
+  }, 0);
+
   return (
     <div className={styles.subtotal}>
       <CurrencyFormat
         renderText={(value) => (
           <>
             <p>
-              Subtotal (0 items): <strong>{value}</strong>
+              Subtotal ({cartItemNumber} items): <strong>{value}</strong>
             </p>
             <small className={styles.subtotal__gift}>
               <input type="Checkbox" />
